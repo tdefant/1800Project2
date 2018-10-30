@@ -74,7 +74,12 @@ for x in f:
         if line[1] == "spouse":
             #print("w spouse test success")
             person = dict[pname]
+            sp = []
             for x in sorted(person.spouse):
+                if x not in sp:
+                    sp.append(x)
+
+            for x in sp:
                 print(x)
 
         if line[1] == "sibling":
