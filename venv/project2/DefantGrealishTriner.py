@@ -1,3 +1,5 @@
+import collections
+
 class Person:
     def __init__(self, p1, p2, name, spouse):
         self.parent1 = p1
@@ -5,7 +7,7 @@ class Person:
         self.name = name
         self.spouse = spouse
 
-f = open("family1.txt", "r")
+f = open("family2.txt", "r")
 dict = {}
 
 for x in f:
@@ -71,8 +73,8 @@ for x in f:
 
         if line[1] == "spouse":
             #print("w spouse test success")
-            temp = dict[pname]
-            for x in sorted(temp.spouse):
+            person = dict[pname]
+            for x in sorted(person.spouse):
                 print(x)
 
         if line[1] == "sibling":
@@ -88,7 +90,27 @@ for x in f:
                         print(dict[x].name.strip())
 
         if line[1] == "ancestor":
-            print("w ancestor test success")
+            #print("w ancestor test success")
+            #person = dict[pname]
+            anc = []
+            d = collections.deque([pname])
+            while len(d) != 0:
+                #for some reason new lines are being created in this while loop
+                pname = d[0]
+                if pname is '':
+                    break
+
+                d.popleft()
+                p = dict[pname]
+
+                if p.parent1 is not None:
+                    d.append(p.parent1.strip())
+                    anc.append(p.parent1)
+                if p.parent2 is not None:
+                    d.append(p.parent2.strip())
+                    anc.append(p.parent2)
+            for x in sorted(anc):
+                print(x)
 
         if line[1] == "cousin":
             print("w cousin test success")
@@ -136,7 +158,28 @@ for x in f:
                 print("No")
 
         if line[2] == "ancestor":
-            print("x ancestor test success")
+            #print("x ancestor test success")
+            anc = []
+            d = collections.deque([p2name])
+            while len(d) != 0:
+                # for some reason new lines are being created in this while loop
+                pname = d[0]
+                if pname is '':
+                    break
+
+                d.popleft()
+                p = dict[pname]
+
+                if p.parent1 is not None:
+                    d.append(p.parent1.strip())
+                    anc.append(p.parent1)
+                if p.parent2 is not None:
+                    d.append(p.parent2.strip())
+                    anc.append(p.parent2)
+            if p1name in anc:
+                print("Yes")
+            else:
+                print("No")
 
         if line[2] == "cousin":
             print("x cousin test success")
