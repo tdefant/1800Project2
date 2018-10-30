@@ -109,6 +109,7 @@ for x in f:
                 if p.parent2 is not None:
                     d.append(p.parent2.strip())
                     anc.append(p.parent2)
+
             for x in sorted(anc):
                 print(x)
 
@@ -116,7 +117,49 @@ for x in f:
             print("w cousin test success")
 
         if line[1] == "unrelated":
-            print("w unrelated test success")
+            #print("w unrelated test success")
+            for x in sorted(dict):
+                anc = []
+                d = collections.deque([x])
+                while len(d) != 0:
+                    # for some reason new lines are being created in this while loop
+                    y = d[0]
+                    if y is '':
+                        break
+
+                    d.popleft()
+                    p = dict[y]
+
+                    if p.parent1 is not None:
+                        d.append(p.parent1.strip())
+                        anc.append(p.parent1)
+                    if p.parent2 is not None:
+                        d.append(p.parent2.strip())
+                        anc.append(p.parent2)
+
+                if pname in anc:
+                    pass
+                elif x != pname:
+                    anc2 = []
+                    d = collections.deque([pname])
+                    while len(d) != 0:
+                        z = d[0]
+                        if z is '':
+                            break
+
+                        d.popleft()
+                        p = dict[z]
+
+                        if p.parent1 is not None:
+                            d.append(p.parent1.strip())
+                            anc2.append(p.parent1)
+                        if p.parent2 is not None:
+                            d.append(p.parent2.strip())
+                            anc2.append(p.parent2)
+
+                    if x not in anc2:
+                        print(x)
+
         print()
 
     if line[0] == "X":
@@ -176,6 +219,7 @@ for x in f:
                 if p.parent2 is not None:
                     d.append(p.parent2.strip())
                     anc.append(p.parent2)
+
             if p1name in anc:
                 print("Yes")
             else:
@@ -185,7 +229,51 @@ for x in f:
             print("x cousin test success")
 
         if line[2] == "unrelated":
-            print("x unrelated test success")
+            #print("x unrelated test success")
+            anc = []
+            d = collections.deque([p2name])
+            while len(d) != 0:
+                # for some reason new lines are being created in this while loop
+                pname = d[0]
+                if pname is '':
+                    break
+
+                d.popleft()
+                p = dict[pname]
+
+                if p.parent1 is not None:
+                    d.append(p.parent1.strip())
+                    anc.append(p.parent1)
+                if p.parent2 is not None:
+                    d.append(p.parent2.strip())
+                    anc.append(p.parent2)
+
+            if p1name not in anc:
+                p1anc = []
+                d = collections.deque([p1name])
+                while len(d) != 0:
+                    # for some reason new lines are being created in this while loop
+                    pname = d[0]
+                    if pname is '':
+                        break
+
+                    d.popleft()
+                    p = dict[pname]
+
+                    if p.parent1 is not None:
+                        d.append(p.parent1.strip())
+                        p1anc.append(p.parent1)
+                    if p.parent2 is not None:
+                        d.append(p.parent2.strip())
+                        p1anc.append(p.parent2)
+
+                if p2name not in p1anc:
+                    print("Yes")
+                else:
+                    print("No")
+            else:
+                print("No")
+
         print()
 
 #for x in dict:
