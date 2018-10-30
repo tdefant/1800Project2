@@ -103,7 +103,15 @@ for x in f:
         p2name = line[3].strip()
 
         if line[2] == "child":
-            print("x child test success")
+            #print("x child test success")
+            p1 = dict[p1name]
+            p2 = dict[p2name]
+            if p1.parent1 == p2.name:
+                print("Yes")
+            elif p1.parent2 == p2.name:
+                print("Yes")
+            else:
+                print("No")
 
         if line[2] == "spouse":
             #print("x spouse test success")
