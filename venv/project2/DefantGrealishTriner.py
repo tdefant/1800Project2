@@ -200,8 +200,11 @@ for x in f:
             #print("p1p2 " + p1.parent2)
             #print("p2p1 " + p2.parent1)
             #print("p2p2 " + p2.parent2)
-            if p1.parent1.strip() == p2.parent1.strip() or p1.parent1.strip() == p2.parent2.strip() or p1.parent2.strip() == p2.parent1.strip() or p1.parent2.strip() == p2.parent2.strip():
+
+            if p1.parent1.strip() == p2.parent1.strip() or p1.parent1.strip() == p2.parent2.strip() \
+                    or p1.parent2.strip() == p2.parent1.strip() or p1.parent2.strip() == p2.parent2.strip():
                 print("Yes")
+
             else:
                 print("No")
 
@@ -231,31 +234,59 @@ for x in f:
                 print("No")
 
         if line[2] == "cousin":
-            print("x cousin test success")
+            #print("x cousin test success")
+            #ctest = True
+            if p1name in dict and p2name in dict:
+                cous1 = dict[p1name]
+                cous2 = dict[p2name]
+                c1p1 = cous1.parent1
+                c1p2 = cous1.parent2
+                c2p1 = cous2.parent1
+                c2p2 = cous2.parent2
+
+                if c1p1 == c2p1 or c1p1 == c2p2 or c1p2 == c2p1 or c1p2 == c2p2:
+                    ctest = False
+
+                elif c1p1 in dict and c1p2 in dict and c2p1 in dict and c2p2 in dict:
+                    par11 = dict[c1p1]
+                    par12 = dict[c1p2]
+                    par21 = dict[c2p1]
+                    par22 = dict[c2p2]
+                    c1p1p1 = par11.parent1
+                    c1p1p2 = par11.parent2
+                    c1p2p1 = par12.parent1
+                    c1p2p2 = par12.parent2
+                    c2p1p1 = par21.parent1
+                    c2p1p2 = par21.parent2
+                    c2p2p1 = par22.parent1
+                    c2p2p2 = par22.parent2
+
+                    """
+                    if c1p1p1 is '' or c1p1p2 is '' or c1p2p1 is '' or c1p2p2 is '' or c2p1p1 is '' \
+                            or c2p1p2 is '' or c2p2p1 is '' or c2p2p2 is '':
+                        ctest = False
+                    """
+
+                    if c1p1p1 == c2p1p1 or c1p1p1 == c2p1p2 or c1p1p1 == c2p2p1 or c1p1p1 == c2p2p2 \
+                            or c1p1p2 == c2p1p1 or c1p1p2 == c2p1p2 or c1p1p2 == c2p2p1 or c1p1p2 == c2p2p2 \
+                            or c1p2p1 == c2p1p1 or c1p2p1 == c2p1p2 or c1p2p1 == c2p2p1 or c1p2p1 == c2p2p2 \
+                            or c1p2p2 == c2p1p1 or c1p2p2 == c2p1p2 or c1p2p2 == c2p2p1 or c1p2p2 == c2p2p2:
+                        ctest = True
+                else:
+                    ctest = False
+            else:
+                ctest = False
+
+            if ctest == True:
+                print("Yes")
+            else:
+                print("No")
 
         if line[2] == "unrelated":
             #print("x unrelated test success")
-            anc = []
-            d = collections.deque([p2name])
-            while len(d) != 0:
-                # for some reason new lines are being created in this while loop
-                pname = d[0]
-                if pname is '':
-                    break
-
-                d.popleft()
-                p = dict[pname]
-
-                if p.parent1 is not None:
-                    d.append(p.parent1.strip())
-                    anc.append(p.parent1)
-                if p.parent2 is not None:
-                    d.append(p.parent2.strip())
-                    anc.append(p.parent2)
-
-            if p1name not in anc:
-                p1anc = []
-                d = collections.deque([p1name])
+            if p1name in dict and p2name in dict:
+                anc = []
+                d = collections.deque([p2name])
                 while len(d) != 0:
                     # for some reason new lines are being created in this while loop
                     pname = d[0]
@@ -267,17 +298,38 @@ for x in f:
 
                     if p.parent1 is not None:
                         d.append(p.parent1.strip())
-                        p1anc.append(p.parent1)
+                        anc.append(p.parent1)
                     if p.parent2 is not None:
                         d.append(p.parent2.strip())
-                        p1anc.append(p.parent2)
+                        anc.append(p.parent2)
 
-                if p2name not in p1anc:
-                    print("Yes")
+                if p1name not in anc:
+                    p1anc = []
+                    d = collections.deque([p1name])
+                    while len(d) != 0:
+                        # for some reason new lines are being created in this while loop
+                        pname = d[0]
+                        if pname is '':
+                            break
+
+                        d.popleft()
+                        p = dict[pname]
+
+                        if p.parent1 is not None:
+                            d.append(p.parent1.strip())
+                            p1anc.append(p.parent1)
+                        if p.parent2 is not None:
+                            d.append(p.parent2.strip())
+                            p1anc.append(p.parent2)
+
+                    if p2name not in p1anc:
+                        print("Yes")
+                    else:
+                        print("No")
                 else:
                     print("No")
             else:
-                print("No")
+                print("Yes")
 
         print()
 
