@@ -163,7 +163,32 @@ for x in f:
                             anc2.append(p.parent2)
 
                     if x not in anc2:
-                        print(x)
+                        '''print(pname + "'s parent1: " + dict[pname].parent1)
+                        print(pname + "'s parent2: " + dict[pname].parent2)
+                        print(pname + "'s parent1's parent1: " + dict[dict[pname].parent1].parent1)
+                        print(pname + "'s parent1's parent2: " + dict[dict[pname].parent1].parent2)
+                        print(pname + "'s parent2's parent1: " + dict[dict[pname].parent2].parent1)
+                        print(pname + "'s parent2's parent2: " + dict[dict[pname].parent2].parent2)'''
+                        par1 = dict[pname].parent1
+                        par2 = dict[pname].parent2
+                        xpar1 = dict[x].parent1
+                        xpar2 = dict[x].parent2
+                        if xpar1 != par1 and xpar1 != par2 and xpar2 != par1 and xpar2 != par2:
+                            print(x)
+                        '''print(x + "'s parent1: " + par1)
+                        print(x + "'s parent2: " + par2)
+                        if par1 != '':
+                            par11 = dict[par1].parent1
+                            par12 = dict[par1].parent2
+                            print(x + "'s parent1's parent1: " + par11)
+                            print(x + "'s parent1's parent2: " + par12)
+                        if par2 != '':
+                            par21 = dict[par2].parent1
+                            par22 = dict[par2].parent2
+                            print(x + "'s parent2's parent1: " + par21)
+                            print(x + "'s parent2's parent2: " + par22)
+                        if x != par1 or x != par2 or x != par11 or x != par12 or x != par21 or x != par22:
+                            print(x)'''
 
         print()
 
@@ -277,13 +302,11 @@ for x in f:
 
                     if c1p1p1 == '' or c1p1p2 == '' or c1p2p1 == '' or c1p2p2 == '' or \
                             c2p1p1 == '' or c2p1p2 == '' or c2p2p1 == '' or c2p2p2 == '':
-                        ctest = False
-
-                    elif c1p1p1 == c2p1p1 or c1p1p1 == c2p1p2 or c1p1p1 == c2p2p1 or c1p1p1 == c2p2p2 \
-                            or c1p1p2 == c2p1p1 or c1p1p2 == c2p1p2 or c1p1p2 == c2p2p1 or c1p1p2 == c2p2p2 \
-                            or c1p2p1 == c2p1p1 or c1p2p1 == c2p1p2 or c1p2p1 == c2p2p1 or c1p2p1 == c2p2p2 \
-                            or c1p2p2 == c2p1p1 or c1p2p2 == c2p1p2 or c1p2p2 == c2p2p1 or c1p2p2 == c2p2p2:
-                        ctest = True
+                        if c1p1p1 == c2p1p1 or c1p1p1 == c2p1p2 or c1p1p1 == c2p2p1 or c1p1p1 == c2p2p2 \
+                                or c1p1p2 == c2p1p1 or c1p1p2 == c2p1p2 or c1p1p2 == c2p2p1 or c1p1p2 == c2p2p2 \
+                                or c1p2p1 == c2p1p1 or c1p2p1 == c2p1p2 or c1p2p1 == c2p2p1 or c1p2p1 == c2p2p2 \
+                                or c1p2p2 == c2p1p1 or c1p2p2 == c2p1p2 or c1p2p2 == c2p2p1 or c1p2p2 == c2p2p2:
+                            ctest = True
                 else:
                     ctest = False
             else:
