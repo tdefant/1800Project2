@@ -119,7 +119,80 @@ for x in f:
                 print(x)
 
         if line[1] == "cousin":
-            print("w cousin test success")
+            for x in sorted(dict):
+                p2name = x
+                if pname in dict and p2name in dict:
+                    cous1 = dict[pname]
+                    cous2 = dict[p2name]
+                    c1p1 = cous1.parent1
+                    c1p2 = cous1.parent2
+                    c2p1 = cous2.parent1
+                    c2p2 = cous2.parent2
+                    """print("Cousin 1 parent 1: " + c1p1)
+                    print("Cousin 1 parent 2: " + c1p2)
+                    print("Cousin 2 parent 1: " + c2p1)
+                    print("Cousin 2 parent 2: " + c2p2)"""
+
+                    if c1p1 == c2p1 or c1p1 == c2p2 or c1p2 == c2p1 or c1p2 == c2p2:
+                        ctest = False
+
+                    elif c1p1 in dict and c1p2 in dict and c2p1 in dict and c2p2 in dict:
+                        par11 = dict[c1p1]
+                        par12 = dict[c1p2]
+                        par21 = dict[c2p1]
+                        par22 = dict[c2p2]
+                        c1p1p1 = par11.parent1
+                        c1p1p2 = par11.parent2
+                        c1p2p1 = par12.parent1
+                        c1p2p2 = par12.parent2
+                        c2p1p1 = par21.parent1
+                        c2p1p2 = par21.parent2
+                        c2p2p1 = par22.parent1
+                        c2p2p2 = par22.parent2
+                        """
+                        print("c1p1p1: " + c1p1p1)
+                        print("c1p1p2: " + c1p1p2)
+                        print("c1p2p1: " + c1p2p1)
+                        print("c1p2p2: " + c1p2p2)
+                        print("c2p1p1: " + c2p1p1)
+                        print("c2p1p2: " + c2p1p2)
+                        print("c2p2p1: " + c2p2p1)
+                        print("c2p2p2: " + c2p2p2)
+                        """
+
+                        if c1p1p1 == '':
+                            c1p1p1 = 'a'
+                        if c1p1p2 == '':
+                            c1p1p2 = 'b'
+                        if c1p2p1 == '':
+                            c1p2p1 = 'c'
+                        if c1p2p2 == '':
+                            c1p2p2 = 'd'
+                        if c2p1p1 == '':
+                            c2p1p1 = 'e'
+                        if c2p1p2 == '':
+                            c2p1p2 = 'f'
+                        if c2p2p1 == '':
+                            c2p2p1 = 'g'
+                        if c2p2p2 == '':
+                            c2p2p2 = 'h'
+
+                        '''if c1p1p1 == '' or c1p1p2 == '' or c1p2p1 == '' or c1p2p2 == '' or \
+                                c2p1p1 == '' or c2p1p2 == '' or c2p2p1 == '' or c2p2p2 == '':
+                            ctest = False'''
+
+                        if c1p1p1 == c2p1p1 or c1p1p1 == c2p1p2 or c1p1p1 == c2p2p1 or c1p1p1 == c2p2p2 \
+                                or c1p1p2 == c2p1p1 or c1p1p2 == c2p1p2 or c1p1p2 == c2p2p1 or c1p1p2 == c2p2p2 \
+                                or c1p2p1 == c2p1p1 or c1p2p1 == c2p1p2 or c1p2p1 == c2p2p1 or c1p2p1 == c2p2p2 \
+                                or c1p2p2 == c2p1p1 or c1p2p2 == c2p1p2 or c1p2p2 == c2p2p1 or c1p2p2 == c2p2p2:
+                            ctest = True
+                    else:
+                        ctest = False
+                else:
+                    ctest = False
+
+                if ctest == True:
+                    print(x)
 
         if line[1] == "unrelated":
             #print("w unrelated test success")
@@ -287,13 +360,32 @@ for x in f:
                     print("c2p2p2: " + c2p2p2)
                     """
 
-                    if c1p1p1 == '' or c1p1p2 == '' or c1p2p1 == '' or c1p2p2 == '' or \
+                    if c1p1p1 == '':
+                        c1p1p1 = 'a'
+                    if c1p1p2 == '':
+                        c1p1p2 = 'b'
+                    if c1p2p1 == '':
+                        c1p2p1 = 'c'
+                    if c1p2p2 == '':
+                        c1p2p2 = 'd'
+                    if c2p1p1 == '':
+                        c2p1p1 = 'e'
+                    if c2p1p2 == '':
+                        c2p1p2 = 'f'
+                    if c2p2p1 == '':
+                        c2p2p1 = 'g'
+                    if c2p2p2 == '':
+                        c2p2p2 = 'h'
+
+                    '''if c1p1p1 == '' or c1p1p2 == '' or c1p2p1 == '' or c1p2p2 == '' or \
                             c2p1p1 == '' or c2p1p2 == '' or c2p2p1 == '' or c2p2p2 == '':
-                        if c1p1p1 == c2p1p1 or c1p1p1 == c2p1p2 or c1p1p1 == c2p2p1 or c1p1p1 == c2p2p2 \
-                                or c1p1p2 == c2p1p1 or c1p1p2 == c2p1p2 or c1p1p2 == c2p2p1 or c1p1p2 == c2p2p2 \
-                                or c1p2p1 == c2p1p1 or c1p2p1 == c2p1p2 or c1p2p1 == c2p2p1 or c1p2p1 == c2p2p2 \
-                                or c1p2p2 == c2p1p1 or c1p2p2 == c2p1p2 or c1p2p2 == c2p2p1 or c1p2p2 == c2p2p2:
-                            ctest = True
+                        ctest = False'''
+
+                    if c1p1p1 == c2p1p1 or c1p1p1 == c2p1p2 or c1p1p1 == c2p2p1 or c1p1p1 == c2p2p2 \
+                            or c1p1p2 == c2p1p1 or c1p1p2 == c2p1p2 or c1p1p2 == c2p2p1 or c1p1p2 == c2p2p2 \
+                            or c1p2p1 == c2p1p1 or c1p2p1 == c2p1p2 or c1p2p1 == c2p2p1 or c1p2p1 == c2p2p2 \
+                            or c1p2p2 == c2p1p1 or c1p2p2 == c2p1p2 or c1p2p2 == c2p2p1 or c1p2p2 == c2p2p2:
+                        ctest = True
                 else:
                     ctest = False
             else:
@@ -320,7 +412,26 @@ for x in f:
                     if p.parent2 != '':
                         d.append(p.parent2)
                         anc.append(p.parent2)
-                if p1name in anc:
+                p1 = dict[p1name]
+                p2 = dict[p2name]
+
+                par11 = p1.parent1
+                par12 = p1.parent2
+                par21 = p2.parent1
+                par22 = p2.parent2
+
+                if par11 == '':
+                    par11 = 'a'
+                if par12 == '':
+                    par12 = 'b'
+                if par21 == '':
+                    par21 = 'c'
+                if par22 == '':
+                    par22 = 'd'
+
+                if par11 == par21 or par11 == par22 or par12 == par21 or par12 == par22:
+                    print("No")
+                elif p1name in anc:
                     print("No")
                 else:
                     print("Yes")
